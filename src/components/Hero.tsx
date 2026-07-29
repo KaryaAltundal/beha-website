@@ -26,8 +26,34 @@ export function Hero() {
   const targetLonRef = useRef(centerLongitude)
   const [latValue, setLatValue] = useState(centerLatitude)
   const [lonValue, setLonValue] = useState(centerLongitude)
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  )
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)')
+    const updateViewport = () => setIsMobile(mobileQuery.matches)
+
+    updateViewport()
+    mobileQuery.addEventListener('change', updateViewport)
+
+    return () => mobileQuery.removeEventListener('change', updateViewport)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) {
+      currentMapRef.current = { x: 0, y: 0 }
+      targetMapRef.current = { x: 0, y: 0 }
+      currentLatRef.current = centerLatitude
+      currentLonRef.current = centerLongitude
+      targetLatRef.current = centerLatitude
+      targetLonRef.current = centerLongitude
+      mapRef.current?.style.removeProperty('transform')
+      setLatValue(centerLatitude)
+      setLonValue(centerLongitude)
+      return
+    }
+
     const tick = () => {
       const nextMapX = currentMapRef.current.x + (targetMapRef.current.x - currentMapRef.current.x) * 0.08
       const nextMapY = currentMapRef.current.y + (targetMapRef.current.y - currentMapRef.current.y) * 0.08
@@ -105,12 +131,12 @@ export function Hero() {
         frameRef.current = null
       }
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden bg-[var(--color-background)]"
+      className="relative h-[calc(100svh-80px)] overflow-hidden bg-[var(--color-background)] lg:h-[calc(100svh-88px)]"
       aria-label="Hero section"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -126,14 +152,14 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.45)_52%,rgba(255,255,255,0)_100%)]" />
 
-      <div className="container relative z-20 flex min-h-screen items-center py-12 lg:py-16">
+      <div className="container relative z-20 flex h-full items-center py-5 pb-36 sm:py-8 sm:pb-32 lg:py-16">
         <div className="grid w-full items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           <div className="max-w-[640px]">
             <span className="inline-flex rounded-full border border-[var(--color-border)] bg-white/90 px-4 py-2 text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)] backdrop-blur-sm">
               Harita ve Mühendislik Hizmetleri
             </span>
 
-            <h1 className="mt-6 max-w-[14ch] text-[var(--color-heading)]">
+            <h1 className="mt-5 max-w-[14ch] text-[var(--color-heading)] max-sm:[&_.display]:text-[2.5rem] sm:mt-6">
               <span className="display block">Harita Mühendisliğinde</span>
               <span className="display block">Güvenilir Çözüm Ortağınız.</span>
             </h1>
@@ -148,7 +174,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-10 right-10 z-30 font-mono">
+      <div className="pointer-events-none absolute bottom-6 right-4 z-30 font-mono sm:right-6 lg:bottom-10 lg:right-10">
         <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6B7280] opacity-45">
           GNSS ONLINE
         </div>
