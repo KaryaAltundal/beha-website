@@ -1,12 +1,5 @@
-import { motion, useInView } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-
-const statistics = [
-  { value: 20, suffix: '+', label: 'Yıllık Deneyim' },
-  { value: 500, suffix: '+', label: 'Tamamlanan Proje' },
-  { value: 15, suffix: '+', label: 'Uzman Personel' },
-  { value: 100, suffix: '%', label: 'Müşteri Memnuniyeti' },
-]
+import { motion } from 'framer-motion'
+import { SurveyNetwork } from './SurveyNetwork'
 
 const features = ['Modern Teknoloji', 'Deneyimli Ekip', 'Hassas Ölçüm', 'Güvenilir Hizmet']
 
@@ -16,36 +9,6 @@ const reveal = {
 }
 
 export function About() {
-  const statisticsRef = useRef<HTMLDivElement | null>(null)
-  const isStatisticsInView = useInView(statisticsRef, { once: true, amount: 0.35 })
-  const [counts, setCounts] = useState(() => statistics.map(() => 0))
-  const [isCountComplete, setIsCountComplete] = useState(false)
-
-  useEffect(() => {
-    if (!isStatisticsInView) return
-
-    const duration = 1500
-    const startTime = performance.now()
-    let frameId = 0
-
-    const updateCounts = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1)
-      const easedProgress = 1 - (1 - progress) ** 3
-
-      setCounts(statistics.map((statistic) => Math.round(statistic.value * easedProgress)))
-
-      if (progress < 1) {
-        frameId = requestAnimationFrame(updateCounts)
-      } else {
-        setIsCountComplete(true)
-      }
-    }
-
-    frameId = requestAnimationFrame(updateCounts)
-
-    return () => cancelAnimationFrame(frameId)
-  }, [isStatisticsInView])
-
   return (
     <section id="about" className="bg-white py-24 sm:py-32" aria-labelledby="about-heading">
       <div className="mx-auto w-full max-w-[1200px] px-4">
@@ -70,30 +33,7 @@ export function About() {
           </p>
         </motion.div>
 
-        <motion.div
-          ref={statisticsRef}
-          className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
-        >
-          {statistics.map((statistic, index) => (
-            <motion.div
-              key={statistic.label}
-              className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_8px_24px_rgba(15,23,42,0.05)]"
-              variants={reveal}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              whileHover={{ y: -4 }}
-            >
-              <p className="text-3xl font-bold tracking-tight text-[#4B83B4]">
-                {counts[index]}
-                {isCountComplete ? statistic.suffix : ''}
-              </p>
-              <p className="mt-2 font-medium text-[var(--color-body)]">{statistic.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        <SurveyNetwork />
 
         <motion.div
           className="mt-24 grid items-center gap-12 lg:grid-cols-2 lg:gap-16"

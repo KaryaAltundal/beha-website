@@ -8,7 +8,11 @@ export function References() {
   const isGridInView = useInView(gridRef, { amount: 0.2 })
 
   return (
-    <section id="references" className="bg-white py-24 sm:py-32" aria-labelledby="references-heading">
+    <section
+      id="references"
+      className="flex min-h-[calc(100svh-88px)] flex-col justify-center bg-white py-24 sm:py-32"
+      aria-labelledby="references-heading"
+    >
       <div className="mx-auto w-full max-w-[1200px] px-4">
         <motion.div
           className="mx-auto max-w-3xl text-center"

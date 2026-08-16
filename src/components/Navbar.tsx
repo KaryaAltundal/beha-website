@@ -64,8 +64,11 @@ export function Navbar({
         ? document.querySelector<HTMLElement>('[aria-label="Hero section"]')
         : document.querySelector<HTMLElement>(href)
     const isMobileNavigation = window.matchMedia('(max-width: 1023px)').matches
-    const scrollTarget =
-      href === '#home' ? section : section?.querySelector<HTMLElement>('[data-nav-label], #contact .mx-auto > span') ?? section
+    // Align to the section itself, not to a label inside it. Targeting the inner
+    // label scrolled the section's top padding off-screen, which left the section
+    // shorter than the viewport and let the following section's background show
+    // along the bottom edge.
+    const scrollTarget = section
 
     if (scrollTarget) {
       if (isMobileNavigation) {
