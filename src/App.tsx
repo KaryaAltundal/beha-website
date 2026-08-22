@@ -7,10 +7,11 @@ import { Navbar } from './components/Navbar'
 import { Projects } from './components/Projects'
 import { References } from './components/References'
 import { Services } from './components/Services'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <main>
         <Hero />
@@ -21,7 +22,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   )
 }
 

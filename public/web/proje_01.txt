@@ -1,0 +1,11 @@
+Yer: Ordu
+Proje Türü : LİDAR Drone İle Haritalama
+
+Hizmetler:
+Drone ile Haritalandırma
+Fotogrametri
+Mühendislik Ölçümleri
+
+Gürgentepe – Gölköy LiDAR Haritalama ve Hâlihazır Harita Çalışması
+
+Gürgentepe–Gölköy güzergâhında yaklaşık 13 km uzunluğundaki yol koridorunun, LiDAR teknolojisine sahip İHA sistemleri kullanılarak yüksek hassasiyetle haritalaması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek güzergâha ait hâlihazır harita, sayısal arazi modeli ve mühendislik çalışmalarına uygun güncel jeodezik altlıklar oluşturulmuştur.

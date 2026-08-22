@@ -1,61 +1,7 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-
-const contactDetails = [
-  {
-    label: 'Adres',
-    content: (
-      <>
-        Ceyhun Atuf Kansu Cad.
-        <br />
-        1244. Sok. No:6/1
-        <br />
-        Çankaya / Ankara
-      </>
-    ),
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
-        <circle cx="12" cy="10" r="2.5" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Telefon',
-    content: '(0312) 473 21 33',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 2 2.3Z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'E-posta',
-    content: 'cemvur@behainsaat.com',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2" />
-        <path d="m3 7 9 6 9-6" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Çalışma Saatleri',
-    content: (
-      <>
-        Pazartesi - Cuma
-        <br />
-        09:00 – 18:00
-      </>
-    ),
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3.5 2" />
-      </svg>
-    ),
-  },
-]
+import { Fragment, useEffect, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
+import { translations } from '../i18n/translations'
 
 const reveal = {
   hidden: { opacity: 0, y: 20 },
@@ -63,6 +9,61 @@ const reveal = {
 }
 
 export function Contact() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
+  const contactDetails = [
+    {
+      label: t.contact.address.label,
+      content: t.contact.address.content.map((line, index) => (
+        <Fragment key={line}>
+          {index > 0 && <br />}
+          {line}
+        </Fragment>
+      )),
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+          <circle cx="12" cy="10" r="2.5" />
+        </svg>
+      ),
+    },
+    {
+      label: t.contact.phone.label,
+      content: '(0312) 473 21 33',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 2 2.3Z" />
+        </svg>
+      ),
+    },
+    {
+      label: t.contact.email.label,
+      content: 'cemvur@behainsaat.com',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+      ),
+    },
+    {
+      label: t.contact.hours.label,
+      content: t.contact.hours.content.map((line, index) => (
+        <Fragment key={line}>
+          {index > 0 && <br />}
+          {line}
+        </Fragment>
+      )),
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3.5 2" />
+        </svg>
+      ),
+    },
+  ]
+
   const [isTouchDevice, setIsTouchDevice] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(hover: none), (pointer: coarse)').matches,
   )
@@ -91,12 +92,12 @@ export function Contact() {
           variants={reveal}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <span className="text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)]">İletişim</span>
+          <span className="text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)]">{t.contact.eyebrow}</span>
           <h2 id="contact-heading" className="mt-4 text-[var(--color-heading)]">
-            Bizimle İletişime Geçin
+            {t.contact.heading}
           </h2>
           <p className="body-large mt-5 text-[var(--color-body)]">
-            Projeleriniz ve hizmetlerimiz hakkında bilgi almak için ekibimizle dilediğiniz zaman iletişime geçebilirsiniz.
+            {t.contact.paragraph}
           </p>
         </motion.div>
 
@@ -115,7 +116,7 @@ export function Contact() {
               className="overflow-hidden rounded-2xl border border-[var(--color-border)] shadow-[0_8px_24px_rgba(15,23,42,0.05)]"
             >
               <motion.iframe
-                title="BEHA İnşaat konumu"
+                title={t.contact.mapTitle}
                 src="https://www.google.com/maps?q=Ceyhun%20Atuf%20Kansu%20Cad.%201244.%20Sok.%20No%3A6%2F1%20%C3%87ankaya%20Ankara&output=embed"
                 className="aspect-[4/3] w-full"
                 loading="lazy"
@@ -132,10 +133,10 @@ export function Contact() {
             <a
               href="https://www.google.com/maps/search/?api=1&query=Ceyhun%20Atuf%20Kansu%20Cad.%201244.%20Sok.%20No%3A6%2F1%20%C3%87ankaya%20Ankara"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-4 inline-flex text-sm font-semibold text-[var(--color-primary-600)] transition-colors duration-200 hover:text-[var(--color-primary-500)]"
             >
-              Google Maps'te Aç →
+              {t.contact.openInMaps}
             </a>
           </motion.div>
 

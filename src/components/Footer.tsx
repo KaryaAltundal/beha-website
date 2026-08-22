@@ -1,15 +1,8 @@
 import { motion } from 'framer-motion'
 import type { MouseEvent } from 'react'
 import logoUrl from '../../beha yeni logo/beha-logo-primary.svg'
-
-const quickLinks = [
-  { label: 'Ana Sayfa', href: '#home' },
-  { label: 'Hakkımızda', href: '#about' },
-  { label: 'Hizmetler', href: '#services' },
-  { label: 'Projeler', href: '#projects' },
-  { label: 'Referanslar', href: '#references' },
-  { label: 'İletişim', href: '#contact' },
-]
+import { useLanguage } from '../i18n/LanguageContext'
+import { translations } from '../i18n/translations'
 
 function LocationIcon() {
   return (
@@ -61,6 +54,17 @@ function scrollToHome(event: MouseEvent<HTMLAnchorElement>) {
 }
 
 export function Footer() {
+  const { language } = useLanguage()
+  const t = translations[language]
+  const quickLinks = [
+    { label: t.navbar.home, href: '#home' },
+    { label: t.navbar.about, href: '#about' },
+    { label: t.navbar.services, href: '#services' },
+    { label: t.navbar.projects, href: '#projects' },
+    { label: t.navbar.references, href: '#references' },
+    { label: t.navbar.contact, href: '#contact' },
+  ]
+
   return (
     <motion.footer
       className="border-t border-[var(--color-border)] bg-white"
@@ -73,13 +77,13 @@ export function Footer() {
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-[220px_minmax(0,1fr)_320px]">
           <section className="self-start">
-            <a href="#home" onClick={scrollToHome} aria-label="BEHA ana sayfa">
+            <a href="#home" onClick={scrollToHome} aria-label={t.footer.homeAria}>
               <img src={logoUrl} alt="BEHA Harita Mühendislik" className="h-8 w-auto" />
             </a>
           </section>
 
           <section className="flex flex-col items-start text-left">
-            <h2 className="mb-1.5 text-[12px] font-semibold leading-tight text-[var(--color-heading)]">Hızlı Bağlantılar</h2>
+            <h2 className="mb-1.5 text-[12px] font-semibold leading-tight text-[var(--color-heading)]">{t.footer.quickLinksHeading}</h2>
             <nav aria-label="Footer navigation">
               <ul className="space-y-0.5 text-[10px] font-normal leading-[1.25] text-[var(--color-body)]">
                 {quickLinks.map(({ label, href }) => (
@@ -94,11 +98,11 @@ export function Footer() {
           </section>
 
           <section className="flex flex-col items-start text-left">
-            <h2 className="mb-1.5 text-[12px] font-semibold leading-tight text-[var(--color-heading)]">İletişim</h2>
+            <h2 className="mb-1.5 text-[12px] font-semibold leading-tight text-[var(--color-heading)]">{t.footer.contactHeading}</h2>
             <address className="flex flex-col items-start gap-1 not-italic text-[10px] font-normal leading-[1.25] text-[var(--color-body)]">
               <p className="flex items-start gap-3">
                 <LocationIcon />
-                <span>Ceyhun Atuf Kansu Cad., Balgat / Ankara</span>
+                <span>{t.footer.address}</span>
               </p>
               <p className="flex items-start gap-3">
                 <PhoneIcon />
@@ -131,7 +135,7 @@ export function Footer() {
 
       <div className="w-full border-t border-[var(--color-border)]">
         <div className="mx-auto flex h-12 max-w-[1200px] items-center px-6 text-[13px] font-normal leading-tight text-[var(--color-muted)]">
-          © 2026 BEHA Harita Mühendislik. Tüm hakları saklıdır.
+          {t.footer.copyright}
         </div>
       </div>
     </motion.footer>

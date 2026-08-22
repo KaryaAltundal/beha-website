@@ -1,7 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
+    <!--
+      CSP is scoped to what this app actually loads: self-hosted bundle + local
+      images, Google Fonts (style/font), Unsplash project photos (img), and the
+      Google Maps embed (frame). img-src includes data: because Vite inlines the
+      BEHA logo SVG as a data URI at build time (it's under the default 4kb
+      inlining threshold) — confirmed by testing this policy against the dev
+      server, which is how this requirement was found. style-src keeps
+      'unsafe-inline' because React's style={{...}} prop and Framer Motion both
+      write animated values straight into the DOM's style attribute — removing
+      it would break every animation on the site (Hero parallax, SurveyNetwork,
+      Projects morph). frame-ancestors is not honored inside a <meta> tag per
+      spec; clickjacking protection needs an HTTP header set at the hosting
+      layer.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://images.unsplash.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -9,8 +28,25 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>beha-website</title>
+    <title>BEHA Mühendislik | Harita Mühendisliği ve Ölçme Hizmetleri</title>
+    <meta
+      name="description"
+      content="BEHA Mühendislik; harita mühendisliği, GNSS ölçüm, aplikasyon, halihazır harita ve imar uygulamalarında hassas ve güvenilir çözümler sunar."
+    />
+    <link rel="canonical" href="https://www.behainsaat.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BEHA Mühendislik" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:url" content="https://www.behainsaat.com/" />
+    <meta property="og:title" content="BEHA Mühendislik | Harita Mühendisliği ve Ölçme Hizmetleri" />
+    <meta
+      property="og:description"
+      content="BEHA Mühendislik; harita mühendisliği, GNSS ölçüm, aplikasyon, halihazır harita ve imar uygulamalarında hassas ve güvenilir çözümler sunar."
+    />
+    <meta property="og:image" content="/beha_logo_3.svg" />
+    <meta name="twitter:card" content="summary" />
   </head>
   <body>
     <div id="root"></div>

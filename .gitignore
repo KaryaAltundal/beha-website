@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Secrets — none exist in this repo today, but keep any future .env files
+# out of version control. VITE_-prefixed vars still end up in the client
+# bundle regardless of this file; it only stops the file itself from being
+# committed.
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +30,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ham survey verisi: web icin decimate edilmis kopyasi public/pointclouds/ altinda.
+raw-data/

@@ -1,0 +1,23 @@
+## Veri Toplama ve Uzaktan Algılama
+
+İHA, GNSS, LiDAR, fotogrametri ve benzeri modern teknolojiler kullanılarak yüksek doğrulukta konumsal veri toplanmaktadır. Elde edilen veriler; haritalama, arazi analizi, 3B modelleme ve mühendislik projelerine yönelik işlenerek karar destek süreçlerine hazır hale getirilmektedir.
+
+## Düzenli Depolama Tesisleri (1., 2. ve 3. Sınıf Lot) Projelendirme
+
+Düzenli depolama tesislerinin ihtiyaçlarına yönelik topografik, geometrik ve mühendislik verileri değerlendirilerek proje altyapısı oluşturulmaktadır. Lot tasarımı, arazi düzenlemesi, kapasite hesapları ve uygulamaya esas teknik çalışmalar ilgili standart ve mevzuat doğrultusunda yürütülmektedir.
+
+## Plankote ve Hâlihazır Harita Üretimi
+
+Araziye ait mevcut topoğrafik ve yapısal unsurların yüksek doğrulukta ölçülerek sayısal ortamda modellenmesi sağlanmaktadır. Proje ihtiyaçlarına uygun ölçekte plankote ve hâlihazır haritalar hazırlanarak mühendislik ve tasarım çalışmalarına güvenilir altlık sunulmaktadır.
+
+## Batimetrik ve Hidrografik Ölçümler
+
+Göl, gölet, baraj, nehir ve benzeri su alanlarında su altı topoğrafyasının belirlenmesine yönelik batimetrik ve hidrografik ölçümler gerçekleştirilmektedir. Elde edilen veriler kullanılarak derinlik haritaları, su altı yüzey modelleri ve mühendislik projelerine yönelik sayısal çıktılar oluşturulmaktadır.
+
+## Kamulaştırma ve Sayısal Kadastro Çalışmaları
+
+Kamulaştırma süreçlerine yönelik arazi ve mülkiyet verileri hassas ölçüm teknikleriyle toplanarak sayısal ortamda düzenlenmektedir. Kadastro verilerinin analizi, parsel bazlı çalışmalar ve proje ihtiyaçlarına uygun teknik harita üretimleri gerçekleştirilerek güvenilir bir veri altyapısı oluşturulmaktadır.
+
+## Arazi ve Mühendislik Ölçmeleri
+
+İnşaat, altyapı, üstyapı ve çeşitli mühendislik projeleri için gerekli arazi ölçmeleri yüksek doğruluklu ölçüm sistemleri kullanılarak gerçekleştirilmektedir. Aplikasyon, kot ve koordinat ölçümleri, kesit çalışmaları, hacim hesapları ve projeye özel diğer ölçme hizmetleri sunulmaktadır.

@@ -1,0 +1,11 @@
+Yer: Aydın
+Proje Türü : Yersel LiDAR ile Tarama ve Haritalama
+
+Hizmetler:
+Yersel LiDAR ile Haritalandırma
+Hâlihazır Harita Üretimi
+Mühendislik Ölçümleri
+
+Aydın Parkı Yersel LiDAR Tarama ve Hâlihazır Harita Çalışması
+
+Aydın Parkı’nın mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla yersel LiDAR teknolojisi kullanılarak detaylı tarama çalışması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek park alanına ait hâlihazır harita ve mühendislik çalışmalarında kullanılabilecek güncel sayısal altlıklar oluşturulmuştur.

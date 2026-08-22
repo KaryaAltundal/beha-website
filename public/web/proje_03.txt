@@ -1,0 +1,11 @@
+Yer: Bingöl
+Proje Türü : Fotogrametri ile Haritalama
+
+Hizmetler:
+Drone ile Haritalandırma
+Fotogrametri
+Mühendislik Ölçümleri
+
+Bingöl Katı Atık Sahası Fotogrametrik Haritalama Çalışması
+
+Bingöl’de bulunan katı atık sahasının mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla İHA tabanlı fotogrametri yöntemi kullanılarak detaylı haritalama çalışması gerçekleştirilmiştir. Elde edilen yüksek çözünürlüklü görüntüler işlenerek saha için ortofoto, sayısal yüzey modeli ve mühendislik çalışmalarında kullanılabilecek güncel sayısal harita altlıkları oluşturulmuştur.

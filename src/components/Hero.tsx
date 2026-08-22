@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
+import { translations } from '../i18n/translations'
 
 const centerLatitude = 39.92
 const centerLongitude = 32.854
@@ -15,6 +17,8 @@ function toDms(decimal: number, isLatitude: boolean) {
 }
 
 export function Hero() {
+  const { language } = useLanguage()
+  const t = translations[language]
   const sectionRef = useRef<HTMLElement | null>(null)
   const mapRef = useRef<HTMLImageElement | null>(null)
   const frameRef = useRef<number | null>(null)
@@ -156,17 +160,16 @@ export function Hero() {
         <div className="grid w-full items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           <div className="max-w-[640px]">
             <span className="inline-flex rounded-full border border-[var(--color-border)] bg-white/90 px-4 py-2 text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)] backdrop-blur-sm">
-              Harita ve Mühendislik Hizmetleri
+              {t.hero.badge}
             </span>
 
             <h1 className="mt-5 max-w-[14ch] text-[var(--color-heading)] max-sm:[&_.display]:text-[2.5rem] sm:mt-6">
-              <span className="display block">Harita Mühendisliğinde</span>
-              <span className="display block">Güvenilir Çözüm Ortağınız.</span>
+              <span className="display block">{t.hero.titleLine1}</span>
+              <span className="display block">{t.hero.titleLine2}</span>
             </h1>
 
             <p className="mt-6 max-w-[60ch] body-large text-[var(--color-body)]">
-              BEHA, harita mühendisliği, ölçme, aplikasyon ve mühendislik hizmetlerinde güvenilir,
-              doğru ve profesyonel çözümler sunar.
+              {t.hero.paragraph}
             </p>
           </div>
 

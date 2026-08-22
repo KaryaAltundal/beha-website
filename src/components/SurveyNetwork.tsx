@@ -1,5 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
+import { translations } from '../i18n/translations'
 
 const palette = {
   line: '#5CB8F5',
@@ -28,12 +30,6 @@ const timing = {
 type Statistic =
   | { kind: 'count'; value: number; suffix: string; label: string }
   | { kind: 'text'; headline: string; label: string }
-
-const statistics: Statistic[] = [
-  { kind: 'count', value: 20, suffix: '+', label: 'Yıllık Deneyim' },
-  { kind: 'count', value: 500, suffix: '+', label: 'Tamamlanan Proje' },
-  { kind: 'text', headline: 'Uluslararası Proje', label: 'Deneyimi' },
-]
 
 type Scene = {
   width: number
@@ -240,11 +236,19 @@ function useMediaQuery(query: string) {
 }
 
 export function SurveyNetwork() {
+  const { language } = useLanguage()
+  const t = translations[language]
   const containerRef = useRef<HTMLDivElement | null>(null)
   const prefersReducedMotion = useReducedMotion()
   const isCompact = useMediaQuery('(max-width: 767px)')
 
   const [isActive, setIsActive] = useState(false)
+
+  const statistics: Statistic[] = [
+    { kind: 'count', value: 20, suffix: '+', label: t.surveyNetwork.yearsExperience },
+    { kind: 'count', value: 500, suffix: '+', label: t.surveyNetwork.completedProjects },
+    { kind: 'text', headline: t.surveyNetwork.internationalProjectHeadline, label: t.surveyNetwork.internationalProjectLabel },
+  ]
 
   const scene = isCompact ? compactScene : wideScene
   const shouldDraw = isActive && !prefersReducedMotion

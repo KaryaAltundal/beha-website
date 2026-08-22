@@ -1,0 +1,11 @@
+Yer: Aydın
+Proje Türü : Yersel LiDAR ile Haritalama ve Röleve
+
+Hizmetler:
+Yersel LiDAR ile Haritalandırma
+Röleve Çalışması
+Mühendislik Ölçümleri
+
+Aydın Uzun Çarşı Yersel LiDAR Haritalama ve Röleve Çalışması
+
+Aydın Uzun Çarşı’nın mevcut fiziksel durumunun yüksek hassasiyetle belgelenmesi amacıyla yersel LiDAR teknolojisi kullanılarak detaylı tarama ve ölçüm çalışması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek çarşının mevcut durumunu yansıtan sayısal veriler, röleve çıktıları ve mühendislik çalışmalarında kullanılabilecek güvenilir ölçüm altlıkları oluşturulmuştur.
