@@ -146,9 +146,10 @@ export function Hero() {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           ref={mapRef}
-          src="/hero-map.png"
+          src="/hero-map.webp"
           alt=""
           aria-hidden="true"
+          fetchPriority="high"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
           style={{ opacity: '0.45', filter: 'contrast(1.05)' }}
         />

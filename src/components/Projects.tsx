@@ -28,7 +28,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       services: ['Drone ile Haritalandırma', 'Fotogrametri', 'Mühendislik Ölçümleri'],
       description:
         'Gürgentepe–Gölköy güzergâhında yaklaşık 13 km uzunluğundaki yol koridorunun, LiDAR teknolojisine sahip İHA sistemleri kullanılarak yüksek hassasiyetle haritalaması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek güzergâha ait hâlihazır harita, sayısal arazi modeli ve mühendislik çalışmalarına uygun güncel jeodezik altlıklar oluşturulmuştur.',
-      media: [{ type: 'image', src: '/web/proje_01.png' }],
+      media: [{ type: 'image', src: '/web/proje_01.webp' }],
     },
     {
       id: 'aydin-parki-yersel-lidar',
@@ -39,8 +39,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         "Aydın Parkı'nın mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla yersel LiDAR teknolojisi kullanılarak detaylı tarama çalışması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek park alanına ait hâlihazır harita ve mühendislik çalışmalarında kullanılabilecek güncel sayısal altlıklar oluşturulmuştur.",
       media: [
-        { type: 'image', src: '/web/proje_02_01(2).png' },
-        { type: 'image', src: '/web/proje_02_02.png' },
+        { type: 'image', src: '/web/proje_02_01(2).webp' },
+        { type: 'image', src: '/web/proje_02_02.webp' },
       ],
     },
     {
@@ -53,7 +53,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
         "Katı atık sahasının mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla İHA tabanlı fotogrametri yöntemi kullanılarak detaylı haritalama çalışması gerçekleştirilmiştir. Elde edilen yüksek çözünürlüklü görüntüler işlenerek saha için ortofoto, sayısal yüzey modeli ve mühendislik çalışmalarında kullanılabilecek güncel sayısal harita altlıkları oluşturulmuştur.",
       media: [
         { type: 'video', src: '/web/proje_03_01.mp4' },
-        { type: 'image', src: '/web/proje_03_02.png' },
+        { type: 'image', src: '/web/proje_03_02.webp' },
       ],
     },
     {
@@ -65,8 +65,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         "Aydın Uzun Çarşı'nın mevcut fiziksel durumunun yüksek hassasiyetle belgelenmesi amacıyla yersel LiDAR teknolojisi kullanılarak detaylı tarama ve ölçüm çalışması gerçekleştirilmiştir. Elde edilen yoğun nokta bulutu verileri işlenerek çarşının mevcut durumunu yansıtan sayısal veriler, röleve çıktıları ve mühendislik çalışmalarında kullanılabilecek güvenilir ölçüm altlıkları oluşturulmuştur.",
       media: [
-        { type: 'image', src: '/web/proje_04_01.png' },
-        { type: 'image', src: '/web/proje_04_02.png' },
+        { type: 'image', src: '/web/proje_04_01.webp' },
+        { type: 'image', src: '/web/proje_04_02.webp' },
       ],
     },
     {
@@ -78,8 +78,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         "Amasra kent merkezi ve sahil bandının mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla İHA tabanlı fotogrametri yöntemi kullanılarak detaylı haritalama çalışması gerçekleştirilmiştir. Elde edilen yüksek çözünürlüklü görüntüler işlenerek yaklaşık 385 x 616 metrelik çalışma alanına ait yoğun nokta bulutu, ortofoto, sayısal yüzey modeli ve mühendislik çalışmalarında kullanılabilecek güncel hâlihazır harita altlıkları üretilmiştir.",
       media: [
-        { type: 'image', src: '/web/proje_05_01.png' },
-        { type: 'image', src: '/web/proje_05_02.png' },
+        { type: 'image', src: '/web/proje_05_01.webp' },
+        { type: 'image', src: '/web/proje_05_02.webp' },
       ],
       pointCloud: '/pointclouds/amasra.ply',
     },
@@ -93,7 +93,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       services: ['Drone Mapping', 'Photogrammetry', 'Engineering Surveys'],
       description:
         'The approximately 13 km road corridor on the Gürgentepe–Gölköy route was mapped with high precision using UAV systems equipped with LiDAR technology. The dense point cloud data obtained was processed to produce a base map, digital terrain model, and up-to-date geodetic bases suitable for engineering studies along the route.',
-      media: [{ type: 'image', src: '/web/proje_01.png' }],
+      media: [{ type: 'image', src: '/web/proje_01.webp' }],
     },
     {
       id: 'aydin-parki-yersel-lidar',
@@ -104,8 +104,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         'A detailed scanning study was carried out using terrestrial LiDAR technology to determine the current condition of Aydın Park with high precision. The dense point cloud data obtained was processed to produce a base map of the park area and up-to-date digital bases usable in engineering studies.',
       media: [
-        { type: 'image', src: '/web/proje_02_01(2).png' },
-        { type: 'image', src: '/web/proje_02_02.png' },
+        { type: 'image', src: '/web/proje_02_01(2).webp' },
+        { type: 'image', src: '/web/proje_02_02.webp' },
       ],
     },
     {
@@ -118,7 +118,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
         'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the solid waste site with high precision. The high-resolution imagery obtained was processed to produce an orthophoto, digital surface model, and up-to-date digital map bases usable in engineering studies for the site.',
       media: [
         { type: 'video', src: '/web/proje_03_01.mp4' },
-        { type: 'image', src: '/web/proje_03_02.png' },
+        { type: 'image', src: '/web/proje_03_02.webp' },
       ],
     },
     {
@@ -130,8 +130,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         'A detailed scanning and measurement study was carried out using terrestrial LiDAR technology to document the current physical condition of Aydın Uzun Çarşı with high precision. The dense point cloud data obtained was processed to produce digital data reflecting the current state of the market, as-built outputs, and reliable measurement bases usable in engineering studies.',
       media: [
-        { type: 'image', src: '/web/proje_04_01.png' },
-        { type: 'image', src: '/web/proje_04_02.png' },
+        { type: 'image', src: '/web/proje_04_01.webp' },
+        { type: 'image', src: '/web/proje_04_02.webp' },
       ],
     },
     {
@@ -143,8 +143,8 @@ const projectsByLanguage: Record<Language, Project[]> = {
       description:
         'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the Amasra town centre and shoreline with high precision. The high-resolution imagery obtained was processed to produce a dense point cloud, orthophoto, digital surface model, and up-to-date base map data for the roughly 385 x 616 metre survey area, suitable for engineering studies.',
       media: [
-        { type: 'image', src: '/web/proje_05_01.png' },
-        { type: 'image', src: '/web/proje_05_02.png' },
+        { type: 'image', src: '/web/proje_05_01.webp' },
+        { type: 'image', src: '/web/proje_05_02.webp' },
       ],
       pointCloud: '/pointclouds/amasra.ply',
     },

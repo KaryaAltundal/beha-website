@@ -27,6 +27,14 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!--
+      The hero background is the largest thing above the fold, but it is drawn
+      by React, so the browser cannot see it until the bundle has downloaded and
+      run. Preloading it here starts the fetch during HTML parsing instead, which
+      is the difference between the hero painting with the map and painting
+      white first. Keep this href in step with Hero.tsx.
+    -->
+    <link rel="preload" as="image" href="/hero-map.webp" fetchpriority="high" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
