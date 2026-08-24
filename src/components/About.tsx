@@ -57,7 +57,7 @@ export function About() {
   }, [isDesktop])
 
   return (
-    <section id="about" className="bg-white py-24 sm:py-32" aria-labelledby="about-heading">
+    <section id="about" className="overflow-x-hidden bg-white py-24 sm:py-32" aria-labelledby="about-heading">
       <div className="mx-auto w-full max-w-[1200px] px-4">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -88,17 +88,32 @@ export function About() {
           variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
         >
           <motion.div
-            className="relative flex aspect-[4/5] items-center justify-center lg:aspect-auto"
+            // No aspect ratio of its own: the graphic is a wide landscape and
+            // sets its own height. On lg the box is still pinned to the text
+            // column's height so the two columns line up, with the graphic
+            // centred in it.
+            className="relative flex items-center justify-center"
             style={matchedHeight ? { height: matchedHeight } : undefined}
             variants={reveal}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <motion.img
-              src="/beha_logo_2.svg"
+            {/* Flattened onto white rather than kept transparent — the dots are
+                mostly alpha, and carrying that channel cost four times the
+                bytes. It only works because this section is bg-white; a
+                coloured background here would show the graphic's own.
+
+                width/height are the file's own pixel size. They are never used
+                as a size — h-auto/w-full override both — but they give the
+                browser the aspect ratio up front, so the column holds its
+                height instead of collapsing until the file arrives. */}
+            <img
+              src="/beha-map-network.webp"
               alt={t.about.emblemAlt}
-              className="relative h-full w-auto"
-              whileHover={{ scale: 1.035 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              width={2000}
+              height={1251}
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
             />
           </motion.div>
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import type { MouseEvent } from 'react'
 import logoUrl from '../../beha yeni logo/beha-logo-primary.svg'
+import { emailAddress, emailHref, officeMapUrl, phoneDisplay, phoneHref } from '../lib/contact'
 import { useLanguage } from '../i18n/LanguageContext'
 import { translations } from '../i18n/translations'
 
@@ -102,18 +103,25 @@ export function Footer() {
             <address className="flex flex-col items-start gap-1 not-italic text-[10px] font-normal leading-[1.25] text-[var(--color-body)]">
               <p className="flex items-start gap-3">
                 <LocationIcon />
-                <span>{t.footer.address}</span>
+                <a
+                  href={officeMapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]"
+                >
+                  {t.footer.address}
+                </a>
               </p>
               <p className="flex items-start gap-3">
                 <PhoneIcon />
-                <a href="tel:+903124732133" className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]">
-                  (0312) 473 21 33
+                <a href={phoneHref} className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]">
+                  {phoneDisplay}
                 </a>
               </p>
               <p className="flex items-start gap-3">
                 <MailIcon />
-                <a href="mailto:cemvur@behainsaat.com" className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]">
-                  cemvur@behainsaat.com
+                <a href={emailHref} className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]">
+                  {emailAddress}
                 </a>
               </p>
               <p className="flex items-start gap-3">

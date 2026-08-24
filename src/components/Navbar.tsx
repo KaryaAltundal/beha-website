@@ -32,12 +32,19 @@ export function Navbar({
   const [activeItem, setActiveItem] = useState(navItems[0]?.href ?? '#home')
 
   useEffect(() => {
+    // Two separate thresholds on purpose. The bar shrinks by 16px when it turns
+    // opaque, and Chrome's scroll anchoring compensates for that by moving the
+    // scroll offset the same 16px — so a single threshold could be crossed by
+    // its own effect, which is what made the bar flash on and off a few pixels
+    // below the top of the page. The header reserves a constant height now, so
+    // there is nothing left for anchoring to react to, but the gap between the
+    // two thresholds is wider than the shrink either way.
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 16)
+      setIsScrolled((wasScrolled) => (wasScrolled ? window.scrollY > 8 : window.scrollY > 48))
     }
 
     handleScroll()
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -104,7 +111,7 @@ export function Navbar({
         return
       }
 
-      const navbarHeight = event.currentTarget.closest('header')?.offsetHeight ?? 88
+      const navbarHeight = event.currentTarget.closest('nav')?.offsetHeight ?? 88
       const targetTop = scrollTarget.getBoundingClientRect().top + window.scrollY
       window.scrollTo({ top: Math.max(0, targetTop - navbarHeight), behavior: 'smooth' })
     }
@@ -115,10 +122,17 @@ export function Navbar({
     : 'h-[80px] bg-transparent lg:h-[88px]'
 
   return (
-    <header className="sticky top-0 z-50">
+    // The header reserves one height for the whole page and the bar inside it
+    // shrinks on its own. The bar used to shrink in flow, which pulled every
+    // section below it up by 16px whenever the state flipped — a jump the
+    // browser absorbed by nudging the scroll offset the same 16px, which
+    // flipped the state straight back. Out of flow, there is nothing to absorb.
+    // The header box is therefore taller than the shrunken bar, so it is left
+    // transparent to the cursor and the bar takes those clicks back.
+    <header className="pointer-events-none sticky top-0 z-50 h-[80px] lg:h-[88px]">
       <nav
         aria-label="Primary"
-        className={`transition-[height,background-color,box-shadow,border-color] duration-300 ease-standard ${headerClasses}`}
+        className={`pointer-events-auto absolute inset-x-0 top-0 transition-[height,background-color,box-shadow,border-color] duration-300 ease-standard ${headerClasses}`}
       >
         <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <a

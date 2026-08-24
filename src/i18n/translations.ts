@@ -118,7 +118,7 @@ export const tr: Translations = {
     heading: 'Harita Mühendisliğinde Güvenilir Çözüm Ortağınız',
     paragraph:
       'BEHA, her projeye titiz planlama ve doğru ölçüm yaklaşımıyla değer katar. Deneyimli ekibimiz, güncel teknolojilerle güvenilir sonuçlar üretirken iş ortaklarımızın ihtiyaçlarını dikkatle dinler. Sürdürülebilir ve şeffaf hizmet anlayışımızla, projelerinizi güvenle geleceğe taşırız.',
-    emblemAlt: 'BEHA amblemi',
+    emblemAlt: 'Dünya haritası üzerinde BEHA ölçüm ve proje ağını gösteren görsel',
     whyHeading: 'Neden BEHA?',
     whyParagraph:
       'Projelerinizin her aşamasında teknik doğruluk, açık iletişim ve zamanında teslim ilkeleriyle yanınızdayız. İhtiyaçlarınıza özel çözümler üreterek güvenilir bir iş ortaklığı kuruyoruz.',
@@ -222,7 +222,7 @@ export const en: Translations = {
     heading: 'Your Reliable Partner in Surveying and Engineering',
     paragraph:
       "BEHA adds value to every project through meticulous planning and precise measurement. Our experienced team delivers reliable results with up-to-date technology while carefully listening to our partners' needs. With a sustainable and transparent approach to service, we carry your projects confidently into the future.",
-    emblemAlt: 'BEHA emblem',
+    emblemAlt: 'Illustration of the BEHA survey and project network on a world map',
     whyHeading: 'Why BEHA?',
     whyParagraph:
       'We stand by you at every stage of your project with technical accuracy, open communication, and on-time delivery. We build a reliable partnership by creating solutions tailored to your needs.',

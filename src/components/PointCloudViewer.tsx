@@ -54,6 +54,12 @@ const DEFAULT_POINT_SIZE = 1.6
 const START_DIRECTION = new Vector3(0.62, -0.86, 0.52).normalize()
 /** Only used when a geometry somehow has no bounding box to fit against. */
 const FALLBACK_DISTANCE = 2.1
+/** Points sampled when fitting the frustum to the cloud — enough to be stable without walking millions of points every fit. */
+const FIT_SAMPLE_SIZE = 20000
+/** Percentile of the sampled spread used as the frame boundary, so a handful of outliers can fall outside it. */
+const FIT_PERCENTILE = 0.985
+/** Recentre/refit passes. Each pass re-projects the sample, so three is plenty to converge. */
+const FIT_PASSES = 4
 
 type Status =
   | { kind: 'loading'; progress: number }
@@ -142,16 +148,25 @@ export default function PointCloudViewer({
     camera.far = radius * 60
     camera.updateProjectionMatrix()
 
-    // Fit the frustum to the points themselves rather than to a bounding volume.
-    // Neither the bounding sphere nor the bounding box works here: an aerial
-    // block is a wide, flat, tilted slab, and survey clouds routinely carry a
-    // few strays — a detached cape, noise above the site — that stretch any
-    // enclosing volume well past the part anyone wants to look at. Both left
-    // the site filling under half the canvas. So compute, per sampled point,
-    // the camera distance at which that point would sit exactly on a frustum
-    // edge, and take a high percentile of those: the site fills the frame and
-    // a handful of outliers are allowed to fall outside it.
+    // Fit the frustum to the points themselves rather than to a bounding volume,
+    // and aim it at where they actually are rather than at the origin.
+    //
+    // Neither the bounding sphere nor the bounding box works as a frame: an
+    // aerial block is a wide, flat, tilted slab, and survey clouds routinely
+    // carry a few strays — a detached cape, noise above the site — that stretch
+    // any enclosing volume well past the part anyone wants to look at. Those
+    // same strays also drag the bounding-sphere centre off the site, so simply
+    // looking at the origin left the block sitting in one corner with most of
+    // the canvas empty.
+    //
+    // So do both jobs together, in the camera's own basis: take the robust
+    // (percentile-trimmed) spread of the sample along each axis, put the orbit
+    // target at the middle of it, and pull the camera back until the same
+    // percentile of points sits on the frustum edge. Recentring changes the
+    // perspective the spread was measured under, hence the few passes: each one
+    // re-projects the sample at the distance the previous one produced.
     const position = pointsRef.current?.geometry.getAttribute('position')
+    const target = new Vector3()
     let distance = radius * FALLBACK_DISTANCE
 
     if (position && position.count > 0) {
@@ -162,25 +177,71 @@ export default function PointCloudViewer({
       const tanH = tanV * camera.aspect
 
       const step = Math.max(1, Math.floor(position.count / FIT_SAMPLE_SIZE))
-      const needed: number[] = []
-      for (let i = 0; i < position.count; i += step) {
-        const x = position.getX(i)
-        const y = position.getY(i)
-        const z = position.getZ(i)
-        const along = x * START_DIRECTION.x + y * START_DIRECTION.y + z * START_DIRECTION.z
-        const across = Math.abs(x * right.x + y * right.y + z * right.z) / tanH
-        const vertical = Math.abs(x * up.x + y * up.y + z * up.z) / tanV
-        needed.push(along + Math.max(across, vertical))
+      const count = Math.ceil(position.count / step)
+      // The sample, decomposed once into the camera's basis: sideways, upwards
+      // and along the view direction. Every pass below reuses these.
+      const sideways = new Float64Array(count)
+      const upwards = new Float64Array(count)
+      const along = new Float64Array(count)
+      const point = new Vector3()
+      for (let i = 0, s = 0; s < count; i += step, s++) {
+        point.fromBufferAttribute(position, i)
+        sideways[s] = point.dot(right)
+        upwards[s] = point.dot(up)
+        along[s] = point.dot(START_DIRECTION)
       }
 
-      needed.sort((a, b) => a - b)
-      const cut = needed[Math.floor((needed.length - 1) * FIT_PERCENTILE)]
-      if (cut > 0) distance = cut * 1.05 // a little breathing room around the block
+      const at = (sorted: Float64Array, quantile: number) =>
+        sorted[Math.floor((sorted.length - 1) * quantile)]
+      /** Midpoint of the trimmed range — the centre that ignores the strays. */
+      const middle = (values: Float64Array) => {
+        const sorted = values.slice().sort((a, b) => a - b)
+        return (at(sorted, 1 - FIT_PERCENTILE) + at(sorted, FIT_PERCENTILE)) / 2
+      }
+
+      const depthCentre = middle(along)
+      let sidewaysCentre = 0
+      let upwardsCentre = 0
+      const needed = new Float64Array(count)
+      const projected = new Float64Array(count)
+
+      for (let pass = 0; pass < FIT_PASSES; pass++) {
+        // Distance at which a point would sit exactly on a frustum edge, per
+        // sampled point; the percentile of those is the frame boundary.
+        for (let s = 0; s < count; s++) {
+          needed[s] =
+            along[s] -
+            depthCentre +
+            Math.max(
+              Math.abs(sideways[s] - sidewaysCentre) / tanH,
+              Math.abs(upwards[s] - upwardsCentre) / tanV,
+            )
+        }
+        const fitted = at(needed.slice().sort((a, b) => a - b), FIT_PERCENTILE)
+        if (fitted > 0) distance = fitted * 1.04 // a little breathing room around the block
+        if (pass === FIT_PASSES - 1) break
+
+        // Re-aim: project the sample at this distance and shift the target so
+        // the middle of what is on screen lands in the middle of the canvas.
+        for (let s = 0; s < count; s++) {
+          projected[s] = (sideways[s] - sidewaysCentre) / (tanH * (distance - (along[s] - depthCentre)))
+        }
+        sidewaysCentre += middle(projected) * tanH * distance
+        for (let s = 0; s < count; s++) {
+          projected[s] = (upwards[s] - upwardsCentre) / (tanV * (distance - (along[s] - depthCentre)))
+        }
+        upwardsCentre += middle(projected) * tanV * distance
+      }
+
+      target
+        .addScaledVector(right, sidewaysCentre)
+        .addScaledVector(up, upwardsCentre)
+        .addScaledVector(START_DIRECTION, depthCentre)
     }
 
-    camera.position.copy(START_DIRECTION).multiplyScalar(distance)
+    camera.position.copy(target).addScaledVector(START_DIRECTION, distance)
 
-    controls.target.set(0, 0, 0)
+    controls.target.copy(target)
     controls.minDistance = radius * 0.02
     controls.maxDistance = radius * 12
     controls.update()

@@ -140,7 +140,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[calc(100svh-80px)] overflow-hidden bg-white lg:h-[calc(100svh-88px)]"
+      className="relative min-h-[calc(100svh-80px)] overflow-hidden bg-white lg:min-h-[calc(100svh-88px)]"
       aria-label="Hero section"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">

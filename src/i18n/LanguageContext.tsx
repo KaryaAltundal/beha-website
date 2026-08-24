@@ -4,7 +4,7 @@ export type Language = 'tr' | 'en'
 
 type LanguageContextValue = {
   language: Language
-  toggleLanguage: () => void
+  setLanguage: (language: Language) => void
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
@@ -15,7 +15,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const value = useMemo<LanguageContextValue>(
     () => ({
       language,
-      toggleLanguage: () => setLanguage((current) => (current === 'tr' ? 'en' : 'tr')),
+      setLanguage,
     }),
     [language],
   )

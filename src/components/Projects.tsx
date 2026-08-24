@@ -45,12 +45,12 @@ const projectsByLanguage: Record<Language, Project[]> = {
     },
     {
       id: 'bingol-kati-atik-fotogrametri',
-      title: 'Bingöl Katı Atık Sahası Fotogrametrik Haritalama Çalışması',
-      city: 'Bingöl',
+      title: 'Katı Atık Sahası Fotogrametrik Haritalama Çalışması',
+      city: '',
       type: 'Fotogrametri ile Haritalama',
       services: ['Drone ile Haritalandırma', 'Fotogrametri', 'Mühendislik Ölçümleri'],
       description:
-        "Bingöl'de bulunan katı atık sahasının mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla İHA tabanlı fotogrametri yöntemi kullanılarak detaylı haritalama çalışması gerçekleştirilmiştir. Elde edilen yüksek çözünürlüklü görüntüler işlenerek saha için ortofoto, sayısal yüzey modeli ve mühendislik çalışmalarında kullanılabilecek güncel sayısal harita altlıkları oluşturulmuştur.",
+        "Katı atık sahasının mevcut durumunun yüksek hassasiyetle belirlenmesi amacıyla İHA tabanlı fotogrametri yöntemi kullanılarak detaylı haritalama çalışması gerçekleştirilmiştir. Elde edilen yüksek çözünürlüklü görüntüler işlenerek saha için ortofoto, sayısal yüzey modeli ve mühendislik çalışmalarında kullanılabilecek güncel sayısal harita altlıkları oluşturulmuştur.",
       media: [
         { type: 'video', src: '/web/proje_03_01.mp4' },
         { type: 'image', src: '/web/proje_03_02.png' },
@@ -110,12 +110,12 @@ const projectsByLanguage: Record<Language, Project[]> = {
     },
     {
       id: 'bingol-kati-atik-fotogrametri',
-      title: 'Bingöl Solid Waste Site Photogrammetric Mapping Survey',
-      city: 'Bingöl',
+      title: 'Solid Waste Site Photogrammetric Mapping Survey',
+      city: '',
       type: 'Mapping with Photogrammetry',
       services: ['Drone Mapping', 'Photogrammetry', 'Engineering Surveys'],
       description:
-        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the solid waste site in Bingöl with high precision. The high-resolution imagery obtained was processed to produce an orthophoto, digital surface model, and up-to-date digital map bases usable in engineering studies for the site.',
+        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the solid waste site with high precision. The high-resolution imagery obtained was processed to produce an orthophoto, digital surface model, and up-to-date digital map bases usable in engineering studies for the site.',
       media: [
         { type: 'video', src: '/web/proje_03_01.mp4' },
         { type: 'image', src: '/web/proje_03_02.png' },
@@ -423,7 +423,7 @@ function ProjectDetail({
               media={project.media}
               activeIndex={mediaIndex}
               onSelect={setMediaIndex}
-              alt={`${project.title} - ${project.city}`}
+              alt={project.city ? `${project.title} - ${project.city}` : project.title}
               prefersReducedMotion={prefersReducedMotion}
               enableControls
               onPrev={goToPrev}
@@ -450,13 +450,15 @@ function ProjectDetail({
 
                 <h2 className="mt-2 text-xl text-[var(--color-heading)] sm:text-2xl">{project.title}</h2>
 
-                <p className="mt-3 flex items-center gap-2 text-lg font-semibold text-[var(--color-primary-600)]">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-                    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
-                    <circle cx="12" cy="10" r="2.5" />
-                  </svg>
-                  {project.city}
-                </p>
+                {project.city && (
+                  <p className="mt-3 flex items-center gap-2 text-lg font-semibold text-[var(--color-primary-600)]">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                    {project.city}
+                  </p>
+                )}
 
                 <p className="mt-6 text-[var(--color-body)]">{project.description}</p>
 
@@ -484,10 +486,12 @@ function ProjectDetail({
                     <dt className="text-[var(--color-muted)]">{t.projectType}</dt>
                     <dd className="text-right font-semibold text-[var(--color-heading)]">{project.type}</dd>
                   </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="text-[var(--color-muted)]">{t.location}</dt>
-                    <dd className="text-right font-semibold text-[var(--color-heading)]">{project.city}</dd>
-                  </div>
+                  {project.city && (
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-[var(--color-muted)]">{t.location}</dt>
+                      <dd className="text-right font-semibold text-[var(--color-heading)]">{project.city}</dd>
+                    </div>
+                  )}
                 </dl>
 
                 <div className="mt-5">
@@ -561,7 +565,7 @@ function ProjectDetail({
               ) : (
                 <img
                   src={encodeURI(activeMedia.src)}
-                  alt={`${project.title} - ${project.city}`}
+                  alt={project.city ? `${project.title} - ${project.city}` : project.title}
                   className="max-h-[90vh] max-w-[95vw] object-contain"
                 />
               )}
@@ -666,12 +670,12 @@ export function Projects() {
               media={activeProject.media}
               activeIndex={activeMediaIndex}
               onSelect={setActiveMediaIndex}
-              alt={`${activeProject.title} - ${activeProject.city}`}
+              alt={activeProject.city ? `${activeProject.title} - ${activeProject.city}` : activeProject.title}
               prefersReducedMotion={prefersReducedMotion}
               chip={
                 <div className="pointer-events-none absolute left-5 top-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/90">
                   <div>{t.projects.projectLabel} {formatIndex(activeIndex)}</div>
-                  <div className="mt-1 text-white/70">{activeProject.city}</div>
+                  {activeProject.city && <div className="mt-1 text-white/70">{activeProject.city}</div>}
                 </div>
               }
               t={t.projects}
@@ -725,7 +729,9 @@ export function Projects() {
                       >
                         {project.title}
                       </span>
-                      <span className="mt-0.5 block text-sm text-[var(--color-body)]">{project.city}</span>
+                      {project.city && (
+                        <span className="mt-0.5 block text-sm text-[var(--color-body)]">{project.city}</span>
+                      )}
                     </span>
 
                     <span
