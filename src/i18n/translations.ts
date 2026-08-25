@@ -212,10 +212,10 @@ export const en: Translations = {
   },
   hero: {
     badge: 'Surveying and Engineering Services',
-    titleLine1: 'Your Reliable Partner in',
-    titleLine2: 'Surveying & Engineering',
+    titleLine1: 'Your Reliable Partner',
+    titleLine2: 'in Surveying & Engineering',
     paragraph:
-      'BEHA delivers reliable, accurate, and professional solutions in surveying, measurement, staking, and engineering services.',
+      'BEHA delivers reliable, accurate and professional solutions in surveying, measurement, staking and engineering services.',
   },
   about: {
     eyebrow: 'About Us',
@@ -223,9 +223,9 @@ export const en: Translations = {
     paragraph:
       "BEHA adds value to every project through meticulous planning and precise measurement. Our experienced team delivers reliable results with up-to-date technology while carefully listening to our partners' needs. With a sustainable and transparent approach to service, we carry your projects confidently into the future.",
     emblemAlt: 'Illustration of the BEHA survey and project network on a world map',
-    whyHeading: 'Why BEHA?',
+    whyHeading: 'Why Choose BEHA?',
     whyParagraph:
-      'We stand by you at every stage of your project with technical accuracy, open communication, and on-time delivery. We build a reliable partnership by creating solutions tailored to your needs.',
+      'We stand by you at every stage of your project with technical accuracy, open communication and on-time delivery. We build a reliable partnership by creating solutions tailored to your needs.',
     features: ['Modern Technology', 'Experienced Team', 'Precise Measurement', 'Reliable Service'],
   },
   surveyNetwork: {
@@ -272,8 +272,8 @@ export const en: Translations = {
   },
   references: {
     eyebrow: 'OUR REFERENCES',
-    heading: 'Institutions We Work With, Built on Trust',
-    paragraph: 'We carry out trust-based, long-term, and successful projects with our partners across different sectors.',
+    heading: 'Trusted Partners We Work With',
+    paragraph: 'We carry out trust-based, long-term and successful projects with our partners across different sectors.',
   },
   contact: {
     eyebrow: 'CONTACT',

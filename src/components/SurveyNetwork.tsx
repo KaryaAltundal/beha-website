@@ -245,7 +245,7 @@ export function SurveyNetwork() {
   const [isActive, setIsActive] = useState(false)
 
   const statistics: Statistic[] = [
-    { kind: 'count', value: 20, suffix: '+', label: t.surveyNetwork.yearsExperience },
+    { kind: 'count', value: 25, suffix: '+', label: t.surveyNetwork.yearsExperience },
     { kind: 'count', value: 500, suffix: '+', label: t.surveyNetwork.completedProjects },
     { kind: 'text', headline: t.surveyNetwork.internationalProjectHeadline, label: t.surveyNetwork.internationalProjectLabel },
   ]

@@ -105,8 +105,17 @@ export function Navbar({
       window.setTimeout(unlockPointerEvents, 1000)
 
       if (isMobileNavigation) {
-        const mobileNavbarOffset = 72
-        const targetTop = scrollTarget.getBoundingClientRect().top + window.scrollY
+        const mobileNavbarOffset = document.querySelector('nav')?.offsetHeight ?? 72
+        // Sections carry their own generous top padding (py-24 and similar) for
+        // when someone scrolls to them organically. Landing exactly on the
+        // section's border box after a nav click left that whole padding as
+        // dead space under the bar, pushing the heading much further down than
+        // a tap should. Skipping past most of it — but not all, so there is
+        // still a clean gap — puts the heading right under the bar instead.
+        const paddingTop = parseFloat(getComputedStyle(scrollTarget).paddingTop) || 0
+        const mobileRestGap = 24
+        const targetTop =
+          scrollTarget.getBoundingClientRect().top + window.scrollY + Math.max(0, paddingTop - mobileRestGap)
         window.scrollTo({ top: Math.max(0, targetTop - mobileNavbarOffset), behavior: 'smooth' })
         return
       }
@@ -162,7 +171,7 @@ export function Navbar({
                     >
                       <span>{item.label}</span>
                       <span
-                        className={`absolute -bottom-1 left-0 h-[2px] rounded-full bg-[var(--color-primary-500)] transition-all duration-200 ease-standard ${
+                        className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-[var(--color-primary-500)] transition-all duration-200 ease-standard ${
                           isActive ? 'w-full' : 'w-0 group-hover:w-full'
                         }`}
                       />

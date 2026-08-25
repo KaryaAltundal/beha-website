@@ -39,19 +39,21 @@ function LinkedInIcon() {
   )
 }
 
-function scrollToHome(event: MouseEvent<HTMLAnchorElement>) {
+/**
+ * "Home" from down here means the top of the page, so go there directly.
+ *
+ * The href it overrides is `#home`, which matches nothing — the hero carries
+ * `aria-label="Hero section"`, not an id — so without this the browser just
+ * appends the fragment to the URL and stays put. That was the whole bug: the
+ * logo above already had this handler, the Home link in the list did not.
+ *
+ * Measuring the hero and subtracting a navbar height would land in the same
+ * place on a desktop and eight pixels short on a phone, where the offset was
+ * hardcoded; scrolling to 0 is both simpler and exactly what "home" means.
+ */
+function scrollToTop(event: MouseEvent<HTMLAnchorElement>) {
   event.preventDefault()
-  const heroSection = document.querySelector<HTMLElement>('[aria-label="Hero section"]')
-
-  if (!heroSection) {
-    return
-  }
-
-  const isMobileNavigation = window.matchMedia('(max-width: 1023px)').matches
-  const navbarOffset = isMobileNavigation ? 72 : document.querySelector('header')?.offsetHeight ?? 88
-  const targetTop = heroSection.getBoundingClientRect().top + window.scrollY
-
-  window.scrollTo({ top: Math.max(0, targetTop - navbarOffset), behavior: 'smooth' })
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 export function Footer() {
@@ -78,7 +80,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-[220px_minmax(0,1fr)_320px]">
           <section className="self-start">
-            <a href="#home" onClick={scrollToHome} aria-label={t.footer.homeAria}>
+            <a href="#home" onClick={scrollToTop} aria-label={t.footer.homeAria}>
               <img src={logoUrl} alt="BEHA Harita Mühendislik" className="h-8 w-auto" />
             </a>
           </section>
@@ -89,7 +91,11 @@ export function Footer() {
               <ul className="space-y-0.5 text-[10px] font-normal leading-[1.25] text-[var(--color-body)]">
                 {quickLinks.map(({ label, href }) => (
                   <li key={href}>
-                    <a href={href} className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]">
+                    <a
+                      href={href}
+                      onClick={href === '#home' ? scrollToTop : undefined}
+                      className="transition-colors duration-300 ease-standard hover:text-[var(--color-primary-600)]"
+                    >
                       {label}
                     </a>
                   </li>

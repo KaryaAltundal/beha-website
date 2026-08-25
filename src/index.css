@@ -13,6 +13,19 @@
     color: var(--color-body);
   }
 
+  /* Every size in this file — the clamp()ed heading scale in tokens.css,
+     Tailwind's spacing/gap/radius utilities, icon boxes sized in rem — is
+     defined in rem, so scaling the root font-size scales all of it together,
+     keeping proportions intact. Below the sm breakpoint, where components
+     switch to their unprefixed (mobile) classes, everything read as too large
+     at the full 16px root; trimming the root a little brings text, cards and
+     spacing down together without touching anything at sm: and up. */
+  @media (max-width: 639px) {
+    html {
+      font-size: 90%;
+    }
+  }
+
   * {
     box-sizing: border-box;
   }

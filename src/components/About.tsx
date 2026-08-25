@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { translations } from '../i18n/translations'
@@ -8,6 +8,31 @@ const reveal = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 }
+
+// The feature ticks come in one after another, top to bottom, and do it again
+// every time the list scrolls back into view. That last part is why the list
+// tracks the viewport itself rather than riding the section's reveal above:
+// that one is `once: true` and, being a variant parent, would otherwise hold
+// these children at whatever state it settled on. An explicit `animate` prop
+// on the list breaks that inheritance and puts the replay under its own
+// control. Landing on { opacity: 1, y: 0 } means the list at rest is pixel-
+// identical to what it was before any of this.
+// Paced to reading rather than to the usual "get it on screen" speed: the next
+// item surfaces underneath while the eye is still on the one above it, so the
+// list arrives in order instead of all at once. Four items, ~2.5s end to end.
+const featureList = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.55, delayChildren: 0.12 } },
+}
+const featureItem = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: 'easeOut' } },
+}
+
+// A repeating entrance is exactly what "reduce motion" is asking us not to do,
+// so that reader gets the same two labels with nothing moving between them.
+const featureListStill = { hidden: {}, visible: {} }
+const featureItemStill = { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(
@@ -31,6 +56,10 @@ export function About() {
   const { language } = useLanguage()
   const t = translations[language]
   const rightColRef = useRef<HTMLDivElement | null>(null)
+  const featuresRef = useRef<HTMLUListElement | null>(null)
+  const prefersReducedMotion = useReducedMotion()
+  // No `once`, so this flips back to false on the way out and the list replays.
+  const featuresInView = useInView(featuresRef, { amount: 0.35 })
   const [matchedHeight, setMatchedHeight] = useState<number | null>(null)
   const isDesktop = useMediaQuery('(min-width: 1024px)')
 
@@ -81,7 +110,10 @@ export function About() {
         <SurveyNetwork />
 
         <motion.div
-          className="mt-24 grid items-start gap-12 lg:grid-cols-2 lg:gap-16"
+          // Deliberately a little tighter than the 64px above the survey graphic:
+          // a gap that reads as smaller than the one before it keeps this block
+          // as the continuation of the section rather than a new one starting.
+          className="mt-12 grid items-start gap-12 lg:grid-cols-2 lg:gap-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -123,16 +155,26 @@ export function About() {
               {t.about.whyParagraph}
             </p>
 
-            <ul className="mt-8 space-y-4">
+            <motion.ul
+              ref={featuresRef}
+              className="mt-8 space-y-4"
+              initial="hidden"
+              animate={featuresInView || prefersReducedMotion ? 'visible' : 'hidden'}
+              variants={prefersReducedMotion ? featureListStill : featureList}
+            >
               {t.about.features.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 font-medium text-[var(--color-heading)]">
+                <motion.li
+                  key={feature}
+                  className="flex items-center gap-3 font-medium text-[var(--color-heading)]"
+                  variants={prefersReducedMotion ? featureItemStill : featureItem}
+                >
                   <span className="flex h-5 w-5 items-center justify-center text-sm font-semibold text-[#4B83B4]" aria-hidden="true">
                     ✓
                   </span>
                   {feature}
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </motion.div>
         </motion.div>
       </div>

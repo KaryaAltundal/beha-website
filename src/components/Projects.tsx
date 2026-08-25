@@ -92,7 +92,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       type: 'LiDAR Mapping with Drone',
       services: ['Drone Mapping', 'Photogrammetry', 'Engineering Surveys'],
       description:
-        'The approximately 13 km road corridor on the Gürgentepe–Gölköy route was mapped with high precision using UAV systems equipped with LiDAR technology. The dense point cloud data obtained was processed to produce a base map, digital terrain model, and up-to-date geodetic bases suitable for engineering studies along the route.',
+        'The approximately 13 km road corridor on the Gürgentepe–Gölköy route was mapped with high precision using UAV systems equipped with LiDAR technology. The dense point cloud data obtained was processed to produce a base map, digital terrain model and up-to-date geodetic bases suitable for engineering studies along the route.',
       media: [{ type: 'image', src: '/web/proje_01.webp' }],
     },
     {
@@ -115,7 +115,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       type: 'Mapping with Photogrammetry',
       services: ['Drone Mapping', 'Photogrammetry', 'Engineering Surveys'],
       description:
-        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the solid waste site with high precision. The high-resolution imagery obtained was processed to produce an orthophoto, digital surface model, and up-to-date digital map bases usable in engineering studies for the site.',
+        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the solid waste site with high precision. The high-resolution imagery obtained was processed to produce an orthophoto, digital surface model and up-to-date digital map bases usable in engineering studies for the site.',
       media: [
         { type: 'video', src: '/web/proje_03_01.mp4' },
         { type: 'image', src: '/web/proje_03_02.webp' },
@@ -128,7 +128,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       type: 'Mapping and As-Built Survey with Terrestrial LiDAR',
       services: ['Terrestrial LiDAR Mapping', 'As-Built Survey', 'Engineering Surveys'],
       description:
-        'A detailed scanning and measurement study was carried out using terrestrial LiDAR technology to document the current physical condition of Aydın Uzun Çarşı with high precision. The dense point cloud data obtained was processed to produce digital data reflecting the current state of the market, as-built outputs, and reliable measurement bases usable in engineering studies.',
+        'A detailed scanning and measurement study was carried out using terrestrial LiDAR technology to document the current physical condition of Aydın Uzun Çarşı with high precision. The dense point cloud data obtained was processed to produce digital data reflecting the current state of the market, as-built outputs and reliable measurement bases usable in engineering studies.',
       media: [
         { type: 'image', src: '/web/proje_04_01.webp' },
         { type: 'image', src: '/web/proje_04_02.webp' },
@@ -141,7 +141,7 @@ const projectsByLanguage: Record<Language, Project[]> = {
       type: 'Mapping with Photogrammetry',
       services: ['Drone Mapping', 'Photogrammetry', 'Base Map Production'],
       description:
-        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the Amasra town centre and shoreline with high precision. The high-resolution imagery obtained was processed to produce a dense point cloud, orthophoto, digital surface model, and up-to-date base map data for the roughly 385 x 616 metre survey area, suitable for engineering studies.',
+        'A detailed mapping study was carried out using UAV-based photogrammetry to determine the current condition of the Amasra town centre and shoreline with high precision. The high-resolution imagery obtained was processed to produce a dense point cloud, orthophoto, digital surface model and up-to-date base map data for the roughly 385 x 616 metre survey area, suitable for engineering studies.',
       media: [
         { type: 'image', src: '/web/proje_05_01.webp' },
         { type: 'image', src: '/web/proje_05_02.webp' },
@@ -636,7 +636,7 @@ export function Projects() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto w-full max-w-[1200px] px-4">
+      <div className="relative mx-auto w-full max-w-[1200px] px-6 sm:px-4">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 20 }}

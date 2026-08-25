@@ -49,13 +49,13 @@ const servicesByLanguage: Record<Language, Service[]> = {
       title: 'Data Collection and Remote Sensing',
       image: '/web/Veri Toplama ve Uzaktan Algılama.webp',
       description:
-        'High-precision spatial data is collected using UAVs, GNSS, LiDAR, photogrammetry, and similar modern technologies. The data obtained is processed for mapping, land analysis, 3D modeling, and engineering projects, and made ready for decision-support processes.',
+        'High-precision spatial data is collected using UAVs, GNSS, LiDAR, photogrammetry and similar modern technologies. The data obtained is processed for mapping, land analysis, 3D modeling and engineering projects and made ready for decision-support processes.',
     },
     {
-      title: 'Class 1, 2, and 3 Sanitary Landfill (Lot) Design Services',
+      title: 'Class 1, 2 and 3 Sanitary Landfill (Lot) Design Services',
       image: '/web/1., 2. ve 3. Sınıf Düzenli Depolama Tesisleri (Lot) Projelendirme Hizmetleri.webp',
       description:
-        'Topographic, geometric, and engineering data are evaluated to meet the needs of sanitary landfill facilities, forming the basis of the project infrastructure. Lot design, land grading, capacity calculations, and other technical studies required for implementation are carried out in line with relevant standards and regulations.',
+        'Topographic, geometric and engineering data are evaluated to meet the needs of sanitary landfill facilities, forming the basis of the project infrastructure. Lot design, land grading, capacity calculations and other technical studies required for implementation are carried out in line with relevant standards and regulations.',
     },
     {
       title: 'Spot-Height Survey (Plankote) and Base Map Production',
@@ -67,19 +67,19 @@ const servicesByLanguage: Record<Language, Service[]> = {
       title: 'Bathymetric and Hydrographic Surveys',
       image: '/web/Batimetrik ve Hidrografik Ölçümler.webp',
       description:
-        'Bathymetric and hydrographic surveys are carried out to determine underwater topography in lakes, ponds, dams, rivers, and similar water bodies. The data obtained is used to produce depth maps, underwater surface models, and digital outputs for engineering projects.',
+        'Bathymetric and hydrographic surveys are carried out to determine underwater topography in lakes, ponds, dams, rivers and similar water bodies. The data obtained is used to produce depth maps, underwater surface models and digital outputs for engineering projects.',
     },
     {
       title: 'Expropriation and Digital Cadastral Studies',
       image: '/web/Kamulaştırma ve Sayısal Kadastro Çalışmaları.webp',
       description:
-        'Land and ownership data for expropriation processes are collected using precise measurement techniques and organized digitally. Cadastral data analysis, parcel-based studies, and technical map production suited to project needs are carried out to build a reliable data infrastructure.',
+        'Land and ownership data for expropriation processes are collected using precise measurement techniques and organized digitally. Cadastral data analysis, parcel-based studies and technical map production suited to project needs are carried out to build a reliable data infrastructure.',
     },
     {
       title: 'Land and Engineering Surveys',
       image: '/web/Arazi ve Mühendislik Ölçmeleri.webp',
       description:
-        'Land surveys required for construction, infrastructure, superstructure, and various engineering projects are carried out using high-precision measurement systems. Staking, elevation and coordinate measurements, cross-section studies, volume calculations, and other project-specific surveying services are provided.',
+        'Land surveys required for construction, infrastructure, superstructure and various engineering projects are carried out using high-precision measurement systems. Staking, elevation and coordinate measurements, cross-section studies, volume calculations and other project-specific surveying services are provided.',
     },
   ],
 }
@@ -104,7 +104,7 @@ export function Services() {
 
   return (
     <section id="services" className="bg-white py-24 sm:py-32" aria-labelledby="services-heading">
-      <div className="mx-auto w-full max-w-[1200px] px-4">
+      <div className="mx-auto w-full max-w-[1200px] px-6 sm:px-4">
         <div className="mx-auto max-w-3xl text-center">
           <span data-nav-label className="text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)]">{t.services.eyebrow}</span>
           <h2 id="services-heading" className="mt-4 text-[var(--color-heading)]">
