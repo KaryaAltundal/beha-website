@@ -15,14 +15,18 @@
 
   /* Every size in this file — the clamp()ed heading scale in tokens.css,
      Tailwind's spacing/gap/radius utilities, icon boxes sized in rem — is
-     defined in rem, so scaling the root font-size scales all of it together,
-     keeping proportions intact. Below the sm breakpoint, where components
-     switch to their unprefixed (mobile) classes, everything read as too large
-     at the full 16px root; trimming the root a little brings text, cards and
-     spacing down together without touching anything at sm: and up. */
+     defined in rem, so scaling the root font-size scales all of it together
+     (text, navbar, cards, photos) without touching any component's layout or
+     breakpoints. The whole site read a little large at the browser's default
+     16px root, so it's trimmed everywhere, with an extra step down below the
+     sm breakpoint where phones need it most. */
+  html {
+    font-size: 87.5%; /* 14px */
+  }
+
   @media (max-width: 639px) {
     html {
-      font-size: 90%;
+      font-size: 81.25%; /* 13px */
     }
   }
 

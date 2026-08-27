@@ -29,10 +29,10 @@ export function References() {
   return (
     <section
       id="references"
-      className="flex min-h-[calc(100svh-88px)] flex-col justify-center bg-white py-24 sm:py-32"
+      className="flex min-h-[calc(100svh-5.5rem)] flex-col justify-center bg-white py-24 sm:py-32"
       aria-labelledby="references-heading"
     >
-      <div className="mx-auto w-full max-w-[1200px] px-4">
+      <div className="mx-auto w-full max-w-[75rem] px-4">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 20 }}

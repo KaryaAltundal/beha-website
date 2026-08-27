@@ -77,7 +77,7 @@ export function Footer() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="mx-auto max-w-[75rem] px-6">
         <div className="grid grid-cols-1 gap-6 py-5 md:grid-cols-[220px_minmax(0,1fr)_320px]">
           <section className="self-start">
             <a href="#home" onClick={scrollToTop} aria-label={t.footer.homeAria}>
@@ -148,7 +148,7 @@ export function Footer() {
       </div>
 
       <div className="w-full border-t border-[var(--color-border)]">
-        <div className="mx-auto flex h-12 max-w-[1200px] items-center px-6 text-[13px] font-normal leading-tight text-[var(--color-muted)]">
+        <div className="mx-auto flex h-12 max-w-[75rem] items-center px-6 text-[13px] font-normal leading-tight text-[var(--color-muted)]">
           {t.footer.copyright}
         </div>
       </div>

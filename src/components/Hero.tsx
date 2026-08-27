@@ -140,7 +140,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[calc(100svh-80px)] overflow-hidden bg-white lg:min-h-[calc(100svh-88px)]"
+      className="relative min-h-[calc(100svh-5rem)] overflow-hidden bg-white lg:min-h-[calc(100svh-5.5rem)]"
       aria-label="Hero section"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -159,7 +159,7 @@ export function Hero() {
 
       <div className="container relative z-20 flex h-full items-center py-5 pb-36 sm:py-8 sm:pb-32 lg:py-16">
         <div className="grid w-full items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
-          <div className="max-w-[640px]">
+          <div className="max-w-[40rem]">
             <span className="inline-flex rounded-full border border-[var(--color-border)] bg-white/90 px-4 py-2 text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)] backdrop-blur-sm">
               {t.hero.badge}
             </span>

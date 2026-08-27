@@ -273,7 +273,7 @@ export function SurveyNetwork() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto mt-16 w-full max-w-[960px]"
+      className="relative mx-auto mt-16 w-full max-w-[60rem]"
       style={{ aspectRatio: `${scene.width} / ${scene.height}` }}
     >
       <svg

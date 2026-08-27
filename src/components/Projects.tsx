@@ -412,7 +412,7 @@ function ProjectDetail({
           role="dialog"
           aria-modal="true"
           aria-label={t.projectDetailAria(project.title)}
-          className="relative flex h-[90vh] max-h-[820px] w-full max-w-[1180px] flex-col overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white shadow-[0_40px_90px_rgba(15,23,42,0.16)] lg:w-[86vw] lg:flex-row"
+          className="relative flex h-[90vh] max-h-[51.25rem] w-full max-w-[73.75rem] flex-col overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white shadow-[0_40px_90px_rgba(15,23,42,0.16)] lg:w-[86vw] lg:flex-row"
           initial={{ opacity: 0, scale: 0.96, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.97, y: 8 }}
@@ -620,7 +620,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative flex min-h-[calc(100svh-88px)] flex-col justify-center overflow-hidden bg-[#F7FAFD] py-20 sm:py-24"
+      className="relative flex min-h-[calc(100svh-5.5rem)] flex-col justify-center overflow-hidden bg-[#F7FAFD] py-20 sm:py-24"
       aria-labelledby="projects-heading"
     >
       <ContourBackdrop />
@@ -636,7 +636,7 @@ export function Projects() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto w-full max-w-[1200px] px-6 sm:px-4">
+      <div className="relative mx-auto w-full max-w-[75rem] px-6 sm:px-4">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 20 }}

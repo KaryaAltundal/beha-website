@@ -104,7 +104,7 @@ export function Services() {
 
   return (
     <section id="services" className="bg-white py-24 sm:py-32" aria-labelledby="services-heading">
-      <div className="mx-auto w-full max-w-[1200px] px-6 sm:px-4">
+      <div className="mx-auto w-full max-w-[75rem] px-6 sm:px-4">
         <div className="mx-auto max-w-3xl text-center">
           <span data-nav-label className="text-sm font-semibold tracking-[0.02em] text-[var(--color-primary-600)]">{t.services.eyebrow}</span>
           <h2 id="services-heading" className="mt-4 text-[var(--color-heading)]">

@@ -127,8 +127,8 @@ export function Navbar({
   }
 
   const headerClasses = isScrolled
-    ? 'h-[68px] bg-white/85 backdrop-blur-xl border-b border-[var(--color-border)] shadow-soft lg:h-[72px]'
-    : 'h-[80px] bg-transparent lg:h-[88px]'
+    ? 'h-[4.25rem] bg-white/85 backdrop-blur-xl border-b border-[var(--color-border)] shadow-soft lg:h-[4.5rem]'
+    : 'h-[5rem] bg-transparent lg:h-[5.5rem]'
 
   return (
     // The header reserves one height for the whole page and the bar inside it
@@ -138,12 +138,12 @@ export function Navbar({
     // flipped the state straight back. Out of flow, there is nothing to absorb.
     // The header box is therefore taller than the shrunken bar, so it is left
     // transparent to the cursor and the bar takes those clicks back.
-    <header className="pointer-events-none sticky top-0 z-50 h-[80px] lg:h-[88px]">
+    <header className="pointer-events-none sticky top-0 z-50 h-[5rem] lg:h-[5.5rem]">
       <nav
         aria-label="Primary"
         className={`pointer-events-auto absolute inset-x-0 top-0 transition-[height,background-color,box-shadow,border-color] duration-300 ease-standard ${headerClasses}`}
       >
-        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-full w-full max-w-[90rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <a
             href="#home"
             onClick={(event) => scrollToSection(event, '#home')}
